@@ -19,10 +19,12 @@ namespace FirestoreHttpClient
             public Dictionary<string, object> Data { get; set; }
             public Dictionary<string, FirestoreNode> Subcollections { get; set; }
         }
-        private const string ServiceAccountFilePath = "C:\\suli\\szakdoga\\mvc_DOTNET\\Firebase\\utalom-3b9c1.json";
+        private const string ServiceAccountFilePath = "C:\\suli\\szakdoga\\FirebaseCloudBackupFirebase\\utalom-3b9c1.json";
         public static BackupService backupService = new();
         public static ProjectService projectService = new();
         public static List<Project> projects = new();
+
+        public static string ServiceAccountFilePath1 => ServiceAccountFilePath;
 
         private async static Task Main(string[] args)
         {
@@ -66,11 +68,11 @@ namespace FirestoreHttpClient
                 Console.WriteLine("Add meg a projekt ID-t aminek a biztonsági mentését szeretnéd elkészíteni.");
                 string id = Console.ReadLine();
                 Project project = projectService.findById(id);
-                Console.WriteLine(project.ProjectId + ":\n" + project.ServiceAccountFilePath);
+                Console.WriteLine(project.ProjectId + ":\n");
 
 
                 //itt hívnám meg a megadott projektre a backupservice-t de a bemutatás érdekében a már létező firebase projektemen mutatom be
-                Project backup = new("utalom-3b9c1", ServiceAccountFilePath);
+                Project backup = new("utalom-3b9c1", "C:\\suli\\szakdoga\\FirebaseCloudBackup\\utalom-3b9c1.json");
                 await BackupService.BackupData(backup);
             }
 

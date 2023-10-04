@@ -10,7 +10,7 @@ namespace Firebase.DataAccess
 {
     public class DatabaseRepositoryImplementation : IDataRepository
     {
-        private string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..", "ConfigFiles");
+        private string directoryPath = Path.Combine("C:\\suli\\szakdoga\\FirebaseCloudBackup\\ConfigFiles");
         public void AddProject(Project project)
         {
             string json = JsonConvert.SerializeObject(project, Formatting.Indented);
@@ -30,8 +30,8 @@ namespace Firebase.DataAccess
 
         internal Project findById(string projectId)
         {
-            ;
             string filePath = Path.Combine(directoryPath, projectId, projectId + ".json");
+            Console.WriteLine(directoryPath);
             if (File.Exists(filePath))
             {
                 try
