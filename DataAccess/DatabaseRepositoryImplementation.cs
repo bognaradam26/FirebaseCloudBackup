@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Firebase.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace Firebase.DataAccess
 {
     public class DatabaseRepositoryImplementation : IDataRepository
     {
-        private string directoryPath = Path.Combine("C:\\suli\\szakdoga\\FirebaseCloudBackup\\ConfigFiles");
+        private string directoryPath = Path.Combine("D:\\projects\\FirebasebackuoToCloud\\FirebaseCloudBackup\\ConfigFiles");
         public void AddProject(Project project)
         {
-            string json = JsonConvert.SerializeObject(project, Formatting.Indented);
+            string json = "";
 
             directoryPath = Path.Combine(directoryPath, project.ProjectId);
             Directory.CreateDirectory(directoryPath);
@@ -46,7 +48,7 @@ namespace Firebase.DataAccess
                     };
                     return project;
                 }
-                catch (JsonException)
+                catch (System.Text.Json.JsonException)
                 {
                     Console.WriteLine("Nem találom ezt a projektet :(");
                     return null;

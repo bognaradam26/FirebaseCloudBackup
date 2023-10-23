@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Firebase.Models;
 using Google.Cloud.Firestore;
@@ -11,8 +12,13 @@ namespace Firebase.Services
 {
     public class FirestoreNode
     {
-        public List<KeyValuePair<string, object>> Data { get; set; }
-        public List<KeyValuePair<string, FirestoreNode>> Subcollections { get; set; }
+        [JsonPropertyName("Data")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<KeyValuePair<string, object>>? Data { get; set; }
+
+        [JsonPropertyName("Subcollections")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<KeyValuePair<string, FirestoreNode>>? Subcollections {get; set; }
     }
 
     public class BackupService

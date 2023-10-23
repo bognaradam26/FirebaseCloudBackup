@@ -1,25 +1,12 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Google.Cloud.Firestore;
-using Newtonsoft.Json;
-using Firebase.DataAccess;
-using Firebase.Models;
+﻿using Firebase.Models;
 using Firebase.Services;
-using System.Text.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace FirestoreHttpClient
 {
     internal class Program
     {
-        public class FirestoreNode
-        {
-            public Dictionary<string, object> Data { get; set; }
-            public Dictionary<string, FirestoreNode> Subcollections { get; set; }
-        }
-        private const string ServiceAccountFilePath = "C:\\suli\\szakdoga\\FirebaseCloudBackupFirebase\\utalom-3b9c1.json";
+
+        private const string ServiceAccountFilePath = "";
         public static BackupService backupService = new();
         public static ProjectService projectService = new();
         public static List<Project> projects = new();
@@ -28,7 +15,8 @@ namespace FirestoreHttpClient
 
         private async static Task Main(string[] args)
         {
-            projects = projectService.GetAllProjects();
+
+            /*projects = projectService.GetAllProjects();
             if (projects.Count == 0)
             {
                 Console.WriteLine("Add meg a projekt azonosítóját:");
@@ -72,10 +60,11 @@ namespace FirestoreHttpClient
 
 
                 //itt hívnám meg a megadott projektre a backupservice-t de a bemutatás érdekében a már létező firebase projektemen mutatom be
-                Project backup = new("utalom-3b9c1", "C:\\suli\\szakdoga\\FirebaseCloudBackup\\utalom-3b9c1.json");
+                Project backup = new("utalom-3b9c1", "D:\\projects\\FirebasebackuoToCloud\\FirebaseCloudBackup\\utalom-3b9c1.json");
                 await BackupService.BackupData(backup);
-            }
-
+            }*/
+            Project backup = new("utalom-3b9c1", "D:\\projects\\FirebasebackuoToCloud\\FirebaseCloudBackup\\utalom-3b9c1.json");
+            await BackupService.BackupData(backup);
 
 
         }
