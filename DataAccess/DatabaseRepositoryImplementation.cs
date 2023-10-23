@@ -12,7 +12,7 @@ namespace Firebase.DataAccess
 {
     public class DatabaseRepositoryImplementation : IDataRepository
     {
-        private string directoryPath = Path.Combine("D:\\projects\\FirebasebackuoToCloud\\FirebaseCloudBackup\\ConfigFiles");
+        private string directoryPath = Path.Combine("D:\\projects\\FirebaseBackupWindowsForm\\ConfigFiles");
         public void AddProject(Project project)
         {
             string json = "";

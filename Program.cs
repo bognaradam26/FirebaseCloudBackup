@@ -1,5 +1,6 @@
 ﻿using Firebase.Models;
 using Firebase.Services;
+using FirebaseBackupWindowsForm;
 
 namespace FirestoreHttpClient
 {
@@ -16,7 +17,11 @@ namespace FirestoreHttpClient
         private async static Task Main(string[] args)
         {
 
-            /*projects = projectService.GetAllProjects();
+            Form1 form = new Form1();
+            form.GetAllProjects();
+            form.ShowDialog();
+
+            /*
             if (projects.Count == 0)
             {
                 Console.WriteLine("Add meg a projekt azonosítóját:");
@@ -62,9 +67,9 @@ namespace FirestoreHttpClient
                 //itt hívnám meg a megadott projektre a backupservice-t de a bemutatás érdekében a már létező firebase projektemen mutatom be
                 Project backup = new("utalom-3b9c1", "D:\\projects\\FirebasebackuoToCloud\\FirebaseCloudBackup\\utalom-3b9c1.json");
                 await BackupService.BackupData(backup);
-            }*/
+            }
             Project backup = new("utalom-3b9c1", "D:\\projects\\FirebasebackuoToCloud\\FirebaseCloudBackup\\utalom-3b9c1.json");
-            await BackupService.BackupData(backup);
+            await BackupService.BackupData(backup);*/
 
 
         }

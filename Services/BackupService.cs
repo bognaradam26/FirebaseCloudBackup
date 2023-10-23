@@ -23,7 +23,7 @@ namespace Firebase.Services
 
     public class BackupService
     {
-        public async static Task BackupData(Project project)
+        public async static Task<string> BackupData(Project project)
         {
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", project.ServiceAccountFilePath);
             FirestoreDb db = FirestoreDb.Create(project.ProjectId);
@@ -53,7 +53,7 @@ namespace Firebase.Services
             });
 
             // Display the serialized JSON
-            Console.WriteLine(json);
+            return json;
         }
 
         static async Task searchCollection(CollectionReference collection, FirestoreNode collectionNode)
