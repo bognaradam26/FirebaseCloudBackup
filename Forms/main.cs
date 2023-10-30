@@ -1,23 +1,22 @@
 using Firebase.Models;
 using Firebase.Services;
+using FirebaseBackupWindowsForm.Forms;
 
 namespace FirebaseBackupWindowsForm
 {
-    public partial class Form1 : Form
+    public partial class main : Form
     {
         public static BackupService backupService = new();
         public static ProjectService projectService = new();
-        public Form1()
+        public main()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-        }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
+
         }
 
         public void GetAllProjects()
@@ -35,13 +34,14 @@ namespace FirebaseBackupWindowsForm
 
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
             {
-                Project backup = new("utalom-3b9c1", "D:\\projects\\FirebaseBackupWindowsForm\\utalom-3b9c1.json");
-                string json = await BackupService.BackupData(backup);
-                richTextBox1.AppendText(json);
+                Project selectedProject = projectService.findById(listView1.SelectedItems[0].Text);
+
+                ProjektInfoForm projektInfoForm = new ProjektInfoForm(selectedProject);
+                projektInfoForm.ShowDialog();
             }
         }
     }

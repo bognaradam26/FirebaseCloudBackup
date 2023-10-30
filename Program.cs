@@ -17,7 +17,7 @@ namespace FirestoreHttpClient
         private async static Task Main(string[] args)
         {
 
-            Form1 form = new Form1();
+            main form = new main();
             form.GetAllProjects();
             form.ShowDialog();
 
