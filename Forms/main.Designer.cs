@@ -31,6 +31,7 @@
             ColumnHeader ProjectId;
             listView1 = new ListView();
             button1 = new Button();
+            newProjectButton = new Button();
             ProjectId = new ColumnHeader();
             SuspendLayout();
             // 
@@ -60,6 +61,16 @@
             button1.Text = "Details";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            //
+            // button2
+            //
+            newProjectButton.Location = new Point(112, 306);
+            newProjectButton.Name = "newProjectButton";
+            newProjectButton.Size = new Size(75, 23);
+            newProjectButton.TabIndex = 1;
+            newProjectButton.Text = "Új projekt megadása";
+            newProjectButton.UseVisualStyleBackColor = true;
+
             // 
             // main
             // 
@@ -67,6 +78,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(459, 379);
             Controls.Add(button1);
+            Controls.Add(newProjectButton);
             Controls.Add(listView1);
             Name = "main";
             Text = "Form1";
@@ -79,5 +91,6 @@
         private ListView listView1;
         private ColumnHeader ProjectId;
         private Button button1;
+        private Button newProjectButton;
     }
 }
