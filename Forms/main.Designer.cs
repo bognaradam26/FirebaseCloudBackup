@@ -70,6 +70,7 @@
             newProjectButton.TabIndex = 1;
             newProjectButton.Text = "Új projekt megadása";
             newProjectButton.UseVisualStyleBackColor = true;
+            newProjectButton.Click += NewProjectButton_Click;
 
             // 
             // main

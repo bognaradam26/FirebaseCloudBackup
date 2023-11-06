@@ -42,7 +42,14 @@ namespace FirebaseBackupWindowsForm
 
                 ProjektInfoForm projektInfoForm = new ProjektInfoForm(selectedProject);
                 projektInfoForm.ShowDialog();
+
             }
+        }
+
+        private void NewProjectButton_Click(object sender, EventArgs e)
+        {
+            NewProjektForms newProjektForm = new NewProjektForms();
+            newProjektForm.ShowDialog();
         }
     }
 }
