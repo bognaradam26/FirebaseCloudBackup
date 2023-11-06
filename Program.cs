@@ -14,7 +14,8 @@ namespace FirestoreHttpClient
 
         public static string ServiceAccountFilePath1 => ServiceAccountFilePath;
 
-        private async static Task Main(string[] args)
+        [STAThread]
+        private static void Main(string[] args)
         {
 
             main form = new main();
