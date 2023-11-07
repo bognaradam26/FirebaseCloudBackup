@@ -30,10 +30,10 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
+            projektNameTextBox = new TextBox();
+            projektServiceFileTextBox = new TextBox();
+            projektNameLabel = new Label();
+            projektServiceFileLabel = new Label();
             openFileDialog1 = new OpenFileDialog();
             SuspendLayout();
             // 
@@ -49,35 +49,35 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(83, 94);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 1;
+            projektNameTextBox.Location = new Point(83, 94);
+            projektNameTextBox.Name = "textBox1";
+            projektNameTextBox.Size = new Size(100, 23);
+            projektNameTextBox.TabIndex = 1;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(89, 220);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 2;
+            projektServiceFileTextBox.Location = new Point(89, 220);
+            projektServiceFileTextBox.Name = "textBox2";
+            projektServiceFileTextBox.Size = new Size(100, 23);
+            projektServiceFileTextBox.TabIndex = 2;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(85, 76);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 3;
-            label1.Text = "label1";
+            projektNameLabel.AutoSize = true;
+            projektNameLabel.Location = new Point(85, 76);
+            projektNameLabel.Name = "label1";
+            projektNameLabel.Size = new Size(38, 15);
+            projektNameLabel.TabIndex = 3;
+            projektNameLabel.Text = "Projekt neve:";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(89, 202);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 4;
-            label2.Text = "label2";
+            projektServiceFileLabel.AutoSize = true;
+            projektServiceFileLabel.Location = new Point(89, 202);
+            projektServiceFileLabel.Name = "label2";
+            projektServiceFileLabel.Size = new Size(38, 15);
+            projektServiceFileLabel.TabIndex = 4;
+            projektServiceFileLabel.Text = "Projekt service fajl:";
             // 
             // openFileDialog1
             // 
@@ -88,10 +88,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(projektServiceFileLabel);
+            Controls.Add(projektNameLabel);
+            Controls.Add(projektServiceFileTextBox);
+            Controls.Add(projektNameTextBox);
             Controls.Add(button1);
             Name = "NewProjektForms";
             Text = "Form1";
@@ -102,10 +102,10 @@
         #endregion
 
         private Button button1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Label label1;
-        private Label label2;
+        private TextBox projektNameTextBox;
+        private TextBox projektServiceFileTextBox;
+        private Label projektNameLabel;
+        private Label projektServiceFileLabel;
         private OpenFileDialog openFileDialog1;
     }
 }

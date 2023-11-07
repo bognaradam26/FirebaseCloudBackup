@@ -7,22 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Firebase.Services;
 
 namespace FirebaseBackupWindowsForm.Forms
 {
     public partial class NewProjektForms : Form
     {
-        public NewProjektForms() => InitializeComponent();
-        private void button1_Click(object sender, EventArgs e)
+        ProjectService projectService;
+        String projektName;
+        String ProjektServiceFile;
+        public NewProjektForms()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "*.json";
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                // A kiválasztott fájl elérési útját elérheted az OpenFileDialog.FileName tulajdonságon keresztül
-                string selectedFilePath = ofd.FileName;
-            }
+            InitializeComponent();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -40,5 +36,7 @@ namespace FirebaseBackupWindowsForm.Forms
                 }
                    
         }
+
+        
     }
 }
