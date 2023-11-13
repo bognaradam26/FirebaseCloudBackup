@@ -15,7 +15,7 @@ namespace FirebaseBackupWindowsForm.Forms
     {
         ProjectService projectService;
         String projektName;
-        String ProjektServiceFile;
+        String projektServiceFile;
         public NewProjektForms()
         {
             InitializeComponent();
@@ -32,11 +32,30 @@ namespace FirebaseBackupWindowsForm.Forms
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     // A kiválasztott fájl elérési útját elérheted az OpenFileDialog.FileName tulajdonságon keresztül
-                    string selectedFilePath = openFileDialog.FileName;
+                    projektServiceFile = openFileDialog.Selected
+
                 }
                    
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void NewProjektForms_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void projektNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            projektName = projektNameTextBox.Text;
+        }
     }
 }

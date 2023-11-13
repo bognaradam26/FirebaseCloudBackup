@@ -29,74 +29,100 @@
         [STAThread]
         private void InitializeComponent()
         {
-            button1 = new Button();
-            projektNameTextBox = new TextBox();
-            projektServiceFileTextBox = new TextBox();
-            projektNameLabel = new Label();
-            projektServiceFileLabel = new Label();
-            openFileDialog1 = new OpenFileDialog();
-            SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.projektNameTextBox = new System.Windows.Forms.TextBox();
+            this.projektServiceFileTextBox = new System.Windows.Forms.TextBox();
+            this.projektNameLabel = new System.Windows.Forms.Label();
+            this.projektServiceFileLabel = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.backButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(195, 220);
-            button1.Name = "button1";
-            button1.Size = new Size(25, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            this.button1.Location = new System.Drawing.Point(195, 152);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // projektNameTextBox
             // 
-            projektNameTextBox.Location = new Point(83, 94);
-            projektNameTextBox.Name = "textBox1";
-            projektNameTextBox.Size = new Size(100, 23);
-            projektNameTextBox.TabIndex = 1;
+            this.projektNameTextBox.Location = new System.Drawing.Point(83, 94);
+            this.projektNameTextBox.Name = "projektNameTextBox";
+            this.projektNameTextBox.Size = new System.Drawing.Size(100, 23);
+            this.projektNameTextBox.TabIndex = 1;
+            this.projektNameTextBox.TextChanged += new System.EventHandler(this.projektNameTextBox_TextChanged);
             // 
-            // textBox2
+            // projektServiceFileTextBox
             // 
-            projektServiceFileTextBox.Location = new Point(89, 220);
-            projektServiceFileTextBox.Name = "textBox2";
-            projektServiceFileTextBox.Size = new Size(100, 23);
-            projektServiceFileTextBox.TabIndex = 2;
+            this.projektServiceFileTextBox.Location = new System.Drawing.Point(83, 152);
+            this.projektServiceFileTextBox.Name = "projektServiceFileTextBox";
+            this.projektServiceFileTextBox.Size = new System.Drawing.Size(100, 23);
+            this.projektServiceFileTextBox.TabIndex = 2;
             // 
-            // label1
+            // projektNameLabel
             // 
-            projektNameLabel.AutoSize = true;
-            projektNameLabel.Location = new Point(85, 76);
-            projektNameLabel.Name = "label1";
-            projektNameLabel.Size = new Size(38, 15);
-            projektNameLabel.TabIndex = 3;
-            projektNameLabel.Text = "Projekt neve:";
+            this.projektNameLabel.AutoSize = true;
+            this.projektNameLabel.Location = new System.Drawing.Point(85, 76);
+            this.projektNameLabel.Name = "projektNameLabel";
+            this.projektNameLabel.Size = new System.Drawing.Size(75, 15);
+            this.projektNameLabel.TabIndex = 3;
+            this.projektNameLabel.Text = "Projekt neve:";
             // 
-            // label2
+            // projektServiceFileLabel
             // 
-            projektServiceFileLabel.AutoSize = true;
-            projektServiceFileLabel.Location = new Point(89, 202);
-            projektServiceFileLabel.Name = "label2";
-            projektServiceFileLabel.Size = new Size(38, 15);
-            projektServiceFileLabel.TabIndex = 4;
-            projektServiceFileLabel.Text = "Projekt service fajl:";
+            this.projektServiceFileLabel.AutoSize = true;
+            this.projektServiceFileLabel.Location = new System.Drawing.Point(83, 134);
+            this.projektServiceFileLabel.Name = "projektServiceFileLabel";
+            this.projektServiceFileLabel.Size = new System.Drawing.Size(105, 15);
+            this.projektServiceFileLabel.TabIndex = 4;
+            this.projektServiceFileLabel.Text = "Projekt service fajl:";
             // 
             // openFileDialog1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(195, 313);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 5;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(71, 313);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 6;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
             // 
             // NewProjektForms
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(projektServiceFileLabel);
-            Controls.Add(projektNameLabel);
-            Controls.Add(projektServiceFileTextBox);
-            Controls.Add(projektNameTextBox);
-            Controls.Add(button1);
-            Name = "NewProjektForms";
-            Text = "Form1";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.projektServiceFileLabel);
+            this.Controls.Add(this.projektNameLabel);
+            this.Controls.Add(this.projektServiceFileTextBox);
+            this.Controls.Add(this.projektNameTextBox);
+            this.Controls.Add(this.button1);
+            this.Name = "NewProjektForms";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.NewProjektForms_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -107,5 +133,7 @@
         private Label projektNameLabel;
         private Label projektServiceFileLabel;
         private OpenFileDialog openFileDialog1;
+        private Button backButton;
+        private Button saveButton;
     }
 }
