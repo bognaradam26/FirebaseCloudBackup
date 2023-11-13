@@ -15,7 +15,7 @@ namespace Firebase.DataAccess
         private string directoryPath = Path.Combine("D:\\projects\\FirebaseBackupWindowsForm\\ConfigFiles");
         public void AddProject(Project project)
         {
-            string json = "";
+            string json = JsonConvert.SerializeObject(project, Formatting.Indented); 
 
             directoryPath = Path.Combine(directoryPath, project.ProjectId);
             Directory.CreateDirectory(directoryPath);
