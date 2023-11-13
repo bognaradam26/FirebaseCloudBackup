@@ -26,7 +26,7 @@ namespace FirebaseBackupWindowsForm.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            Project backup = new("utalom-3b9c1", "C:\\suli\\szakdoga\\FirebaseCloudBackup\\utalom-3b9c1.json");
+            Project backup = new("utalom-3b9c1", "D:\\projects\\FirebaseBackupWindowsForm\\utalom-3b9c1.json");
             string json = await BackupService.BackupData(backup);
             richTextBox2.Text = json;
         }

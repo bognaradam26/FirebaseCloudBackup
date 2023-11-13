@@ -29,100 +29,100 @@
         [STAThread]
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.projektNameTextBox = new System.Windows.Forms.TextBox();
-            this.projektServiceFileTextBox = new System.Windows.Forms.TextBox();
-            this.projektNameLabel = new System.Windows.Forms.Label();
-            this.projektServiceFileLabel = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.backButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            button1 = new Button();
+            projektNameTextBox = new TextBox();
+            projektServiceFileTextBox = new TextBox();
+            projektNameLabel = new Label();
+            projektServiceFileLabel = new Label();
+            openFileDialog1 = new OpenFileDialog();
+            backButton = new Button();
+            saveButton = new Button();
+            SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(195, 152);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Location = new Point(195, 152);
+            button1.Name = "button1";
+            button1.Size = new Size(25, 23);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // projektNameTextBox
             // 
-            this.projektNameTextBox.Location = new System.Drawing.Point(83, 94);
-            this.projektNameTextBox.Name = "projektNameTextBox";
-            this.projektNameTextBox.Size = new System.Drawing.Size(100, 23);
-            this.projektNameTextBox.TabIndex = 1;
-            this.projektNameTextBox.TextChanged += new System.EventHandler(this.projektNameTextBox_TextChanged);
+            projektNameTextBox.Location = new Point(83, 94);
+            projektNameTextBox.Name = "projektNameTextBox";
+            projektNameTextBox.Size = new Size(100, 23);
+            projektNameTextBox.TabIndex = 1;
+            projektNameTextBox.TextChanged += projektNameTextBox_TextChanged;
             // 
             // projektServiceFileTextBox
             // 
-            this.projektServiceFileTextBox.Location = new System.Drawing.Point(83, 152);
-            this.projektServiceFileTextBox.Name = "projektServiceFileTextBox";
-            this.projektServiceFileTextBox.Size = new System.Drawing.Size(100, 23);
-            this.projektServiceFileTextBox.TabIndex = 2;
+            projektServiceFileTextBox.Location = new Point(83, 152);
+            projektServiceFileTextBox.Name = "projektServiceFileTextBox";
+            projektServiceFileTextBox.Size = new Size(100, 23);
+            projektServiceFileTextBox.TabIndex = 2;
+            projektServiceFileTextBox.TextChanged += projektServiceFileTextBox_TextChanged;
             // 
             // projektNameLabel
             // 
-            this.projektNameLabel.AutoSize = true;
-            this.projektNameLabel.Location = new System.Drawing.Point(85, 76);
-            this.projektNameLabel.Name = "projektNameLabel";
-            this.projektNameLabel.Size = new System.Drawing.Size(75, 15);
-            this.projektNameLabel.TabIndex = 3;
-            this.projektNameLabel.Text = "Projekt neve:";
+            projektNameLabel.AutoSize = true;
+            projektNameLabel.Location = new Point(85, 76);
+            projektNameLabel.Name = "projektNameLabel";
+            projektNameLabel.Size = new Size(75, 15);
+            projektNameLabel.TabIndex = 3;
+            projektNameLabel.Text = "Projekt neve:";
             // 
             // projektServiceFileLabel
             // 
-            this.projektServiceFileLabel.AutoSize = true;
-            this.projektServiceFileLabel.Location = new System.Drawing.Point(83, 134);
-            this.projektServiceFileLabel.Name = "projektServiceFileLabel";
-            this.projektServiceFileLabel.Size = new System.Drawing.Size(105, 15);
-            this.projektServiceFileLabel.TabIndex = 4;
-            this.projektServiceFileLabel.Text = "Projekt service fajl:";
+            projektServiceFileLabel.AutoSize = true;
+            projektServiceFileLabel.Location = new Point(83, 134);
+            projektServiceFileLabel.Name = "projektServiceFileLabel";
+            projektServiceFileLabel.Size = new Size(105, 15);
+            projektServiceFileLabel.TabIndex = 4;
+            projektServiceFileLabel.Text = "Projekt service fajl:";
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(195, 313);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 5;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.button2_Click);
+            backButton.Location = new Point(195, 313);
+            backButton.Name = "backButton";
+            backButton.Size = new Size(75, 23);
+            backButton.TabIndex = 5;
+            backButton.Text = "Back";
+            backButton.UseVisualStyleBackColor = true;
+            backButton.Click += backButton_Click;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(71, 313);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 6;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
+            saveButton.Location = new Point(71, 313);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(75, 23);
+            saveButton.TabIndex = 6;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // NewProjektForms
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.backButton);
-            this.Controls.Add(this.projektServiceFileLabel);
-            this.Controls.Add(this.projektNameLabel);
-            this.Controls.Add(this.projektServiceFileTextBox);
-            this.Controls.Add(this.projektNameTextBox);
-            this.Controls.Add(this.button1);
-            this.Name = "NewProjektForms";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.NewProjektForms_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(saveButton);
+            Controls.Add(backButton);
+            Controls.Add(projektServiceFileLabel);
+            Controls.Add(projektNameLabel);
+            Controls.Add(projektServiceFileTextBox);
+            Controls.Add(projektNameTextBox);
+            Controls.Add(button1);
+            Name = "NewProjektForms";
+            Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

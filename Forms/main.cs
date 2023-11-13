@@ -8,6 +8,7 @@ namespace FirebaseBackupWindowsForm
     {
         public static BackupService backupService = new();
         public static ProjectService projectService = new();
+        NewProjektForms newProjektForm = new NewProjektForms();
         public main()
         {
             InitializeComponent();
@@ -29,11 +30,6 @@ namespace FirebaseBackupWindowsForm
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -48,8 +44,10 @@ namespace FirebaseBackupWindowsForm
 
         private void NewProjectButton_Click(object sender, EventArgs e)
         {
-            NewProjektForms newProjektForm = new NewProjektForms();
             newProjektForm.ShowDialog();
+            this.GetAllProjects();
+            
         }
+
     }
 }

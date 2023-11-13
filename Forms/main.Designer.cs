@@ -45,7 +45,6 @@
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // ProjectId
             // 
@@ -71,8 +70,7 @@
             newProjectButton.Text = "Új projekt megadása";
             newProjectButton.UseVisualStyleBackColor = true;
             newProjectButton.Click += NewProjectButton_Click;
-
-            // 
+            //
             // main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
