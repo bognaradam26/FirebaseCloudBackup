@@ -17,6 +17,14 @@ namespace FirestoreHttpClient
         [STAThread]
         private static void Main(string[] args)
         {
+            try
+            {
+                Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\"));
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                Console.WriteLine("The specified directory does not exist. {0}", e);
+            }
 
             main form = new main();
             form.GetAllProjects();

@@ -81,7 +81,6 @@
             Controls.Add(listView1);
             Name = "main";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
         }
 

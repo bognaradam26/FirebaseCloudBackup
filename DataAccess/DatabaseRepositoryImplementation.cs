@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using Firebase.Models;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using Firebase.Models;
 using Newtonsoft.Json;
 
 namespace Firebase.DataAccess
 {
     public class DatabaseRepositoryImplementation : IDataRepository
     {
-        private string directoryPath = Path.Combine("D:\\projects\\FirebaseBackupWindowsForm\\ConfigFiles");
+        private string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles");
         public void AddProject(Project project)
         {
             string json = JsonConvert.SerializeObject(project, Formatting.Indented); 
