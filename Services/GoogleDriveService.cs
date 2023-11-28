@@ -8,8 +8,7 @@ namespace FirebaseBackupWindowsForm.Services
     internal class GoogleDriveService
     {
 
-        private static async
-    Task UploadFile(string serviceAccountFilePath, string filePath, string folderName)
+        private static async Task UploadFile(string serviceAccountFilePath, string filePath, string folderName)
         {
             var credential = GoogleCredential.FromFile(serviceAccountFilePath)
                 .CreateScoped(DriveService.ScopeConstants.Drive);
