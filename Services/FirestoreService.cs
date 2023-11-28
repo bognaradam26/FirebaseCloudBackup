@@ -1,51 +1,37 @@
 ﻿using Firebase.Models;
-using FirebaseBackupWindowsForm.Services;
+using Firebase.Services;
 using Google.Cloud.Firestore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
-namespace Firebase.Services
+namespace FirebaseBackupWindowsForm.Services
 {
-
-
-    public class BackupService
+    public class FirestoreDocument
     {
-        FirestoreService firestoreService;
-        GoogleDriveService driveService;
+        [JsonPropertyName("Data")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<KeyValuePair<string, object>>? Data { get; set; }
 
-        public async static Task<string> BackupData(Project project)
-        {
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", project.ServiceAccountFilePath);
-            FirestoreDb db = FirestoreDb.Create(project.ProjectId);
+        [JsonPropertyName("Subcollections")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<FirestoreCollection>? Subcollections { get; set; }
+    }
 
-            IAsyncEnumerable<CollectionReference> rootCollections = db.ListRootCollectionsAsync();
-            FirestoreCollection root = new()
-            {
-                Data = new List<KeyValuePair<string, object>>(),
-                Subcollections = new List<FirestoreCollection>()
-            };
+    public class FirestoreCollection
+    {
+        public string? Id { get; set; }
+        public List<FirestoreDocument>? Documents { get; set; }
+    }
+    internal class FirestoreService
+    {
+        
 
-            await foreach (CollectionReference collection in rootCollections)
-            {
-
-                await searchCollection(collection, root);
-
-                string json1 = JsonSerializer.Serialize(root, new JsonSerializerOptions
-                {
-                    WriteIndented = true, // Optional: format the JSON for readability
-                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-                });
-
-                return json1;
-            }
-            string json = JsonSerializer.Serialize(root, new JsonSerializerOptions
-            {
-                WriteIndented = true, // Optional: format the JSON for readability
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            });
-
-            // Display the serialized JSON
-            return json;
-        }
+            
         static async Task searchCollection(CollectionReference collection, FirestoreDocument collectionNode)
         {
             QuerySnapshot snapshots = await collection.GetSnapshotAsync();
@@ -87,7 +73,10 @@ namespace Firebase.Services
                 collectionNode.Subcollections.Add(new FirestoreCollection(document.Id, documentNode));
             }
         }
+
+        static async Task searchDocument(DocumentReference document, FirestoreDocument documentNode)
+        {
+
+        }
     }
-
-
 }
