@@ -1,13 +1,5 @@
-﻿using Firebase.Models;
-using Firebase.Services;
-using Google.Cloud.Firestore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
+﻿using Google.Cloud.Firestore;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace FirebaseBackupWindowsForm.Services
 {
@@ -29,15 +21,13 @@ namespace FirebaseBackupWindowsForm.Services
     }
     internal class FirestoreService
     {
-        
-
-            
-        static async Task searchCollection(CollectionReference collection, FirestoreDocument collectionNode)
+        public static async Task searchCollection(CollectionReference collection, FirestoreCollection collectionNode)
         {
             QuerySnapshot snapshots = await collection.GetSnapshotAsync();
 
             foreach (DocumentSnapshot document in snapshots.Documents)
             {
+
                 FirestoreDocument documentNode = new()
                 {
                     Data = new List<KeyValuePair<string, object>>(),
@@ -54,29 +44,30 @@ namespace FirebaseBackupWindowsForm.Services
                     documentNode.Data.Add(new KeyValuePair<string, object>(key, value));
                 }
 
-                IAsyncEnumerable<CollectionReference> subcollections = docref.ListCollectionsAsync();
+                await searchDocument(docref, documentNode);
 
-                if (subcollections != null)
-                {
-                    await foreach (CollectionReference subcollection in subcollections)
-                    {
-                        FirestoreDocument subCollectionNode = new()
-                        {
-                            Data = new List<KeyValuePair<string, object>>(),
-                            Subcollections = new List<FirestoreCollection>()
-                        };
-                        await searchCollection(subcollection, subCollectionNode);
-                        documentNode.Subcollections.Add(new FirestoreCollection(subcollection.Id, subCollectionNode));
-                    }
-                }
 
-                collectionNode.Subcollections.Add(new FirestoreCollection(document.Id, documentNode));
+                collectionNode.Documents.Add(documentNode);
             }
         }
 
         static async Task searchDocument(DocumentReference document, FirestoreDocument documentNode)
         {
+            IAsyncEnumerable<CollectionReference> subcollections = document.ListCollectionsAsync();
 
+            if (subcollections != null)
+            {
+                await foreach (CollectionReference subcollection in subcollections)
+                {
+                    FirestoreCollection subCollectionNode = new()
+                    {
+                        Id = subcollection.Id,
+                        Documents = new List<FirestoreDocument>()
+                    };
+                    await searchCollection(subcollection, subCollectionNode);
+                    documentNode.Subcollections.Add(subCollectionNode);
+                }
+            }
         }
     }
 }
