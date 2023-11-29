@@ -7,7 +7,7 @@ namespace FirebaseBackupWindowsForm.Services
     {
         [JsonPropertyName("Data")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public List<KeyValuePair<string, object>>? Data { get; set; }
+        public Dictionary<string, object>? Data { get; set; }
 
         [JsonPropertyName("Subcollections")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -30,18 +30,20 @@ namespace FirebaseBackupWindowsForm.Services
 
                 FirestoreDocument documentNode = new()
                 {
-                    Data = new List<KeyValuePair<string, object>>(),
+                    Data = new Dictionary<string, object>(),
                     Subcollections = new List<FirestoreCollection>()
                 };
 
                 DocumentReference docref = document.Reference;
                 Dictionary<string, object> data = document.ToDictionary();
 
+                documentNode.Data.Add("ItemId", document.Id);
+
                 foreach (KeyValuePair<string, object> field in data)
                 {
                     string key = field.Key;
                     object value = field.Value;
-                    documentNode.Data.Add(new KeyValuePair<string, object>(key, value));
+                    documentNode.Data.Add(key, value);
                 }
 
                 await searchDocument(docref, documentNode);

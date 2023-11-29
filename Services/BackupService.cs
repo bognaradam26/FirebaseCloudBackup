@@ -9,8 +9,8 @@ namespace Firebase.Services
 
     public class BackupService
     {
-        FirestoreService FirestoreService;
-        GoogleDriveService DriveService;
+        FirestoreService FirestoreService = new();
+        GoogleDriveService DriveService = new();
 
         public async static Task<string> BackupData(Project project)
         {
@@ -37,7 +37,8 @@ namespace Firebase.Services
                     Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 });
 
-                return json1;
+                File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(),"ConfigFiles", project.ProjectId, collection.Id + ".json"), json1);
+
             }
             // Display the serialized JSON
             return json;
