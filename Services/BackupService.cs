@@ -9,8 +9,8 @@ namespace Firebase.Services
 
     public class BackupService
     {
-        FirestoreService FirestoreService = new();
-        GoogleDriveService DriveService = new();
+        private static FirestoreService FirestoreService = new();
+        private static GoogleDriveService DriveService = new();
 
         public async static Task<string> BackupData(Project project)
         {
@@ -36,8 +36,10 @@ namespace Firebase.Services
                     WriteIndented = true, // Optional: format the JSON for readability
                     Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 });
+                string savePath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, collection.Id + ".json");
+                File.WriteAllText(savePath, json1);
 
-                File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(),"ConfigFiles", project.ProjectId, collection.Id + ".json"), json1);
+                await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId+".json"), savePath);
 
             }
             // Display the serialized JSON
