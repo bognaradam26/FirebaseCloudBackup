@@ -1,6 +1,9 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using Google.Api;
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
+using Google.Cloud.Firestore;
+using Microsoft.IdentityModel.Tokens;
 using File = Google.Apis.Drive.v3.Data.File;
 
 namespace FirebaseBackupWindowsForm.Services
@@ -18,24 +21,29 @@ namespace FirebaseBackupWindowsForm.Services
                 HttpClientInitializer = credential
             });
 
-            File fileMetadata = new() { Name = Path.GetFileName(filePath), Parents = new List<string>() };
-
-            var stream = new FileStream(filePath, FileMode.Open);
-
-
             var request = service.Files.List();
             var responseFiles = await request.ExecuteAsync();
-            foreach (var driveFiles in responseFiles.Files)
+            if (responseFiles.Files.Count > 0)
             {
-                string fileToUploadName = Path.GetFileName(filePath);
-                if (driveFiles.Name.Equals(fileToUploadName))
+                string isExistId = "";
+                foreach (var driveFiles in responseFiles.Files)
                 {
-                    MessageBox.Show("egyezik");
-                    
+                    string fileToUploadName = Path.GetFileName(filePath);
+                    if (driveFiles.Name.Equals(fileToUploadName))
+                    {
+                        isExistId = driveFiles.Id;
+
+                    }
                 }
+                if (!isExistId.IsNullOrEmpty()) {
+                    UpdateFile(service,isExistId,filePath);
+                } else {
+                    CreateFile(service, filePath);
+                }
+
+            } else {
+                CreateFile(service, filePath);
             }
-
-
         }
 
         private static string GetFolderId(DriveService service, string folderName)
@@ -54,11 +62,14 @@ namespace FirebaseBackupWindowsForm.Services
             return null;
         }
 
-        static void UpdateFile(DriveService service, string fileId, File updateFile)
+        static void UpdateFile(DriveService service, string fileId, string updateFilePath)
         {
             try
             {
-                service.Files.Update(updateFile, fileId).Execute();
+                byte[] newFileContent = System.IO.File.ReadAllBytes(updateFilePath);
+                MemoryStream stream = new MemoryStream(newFileContent);
+                FilesResource.UpdateMediaUpload updateRequest = service.Files.Update(null, fileId, stream, "application/octet-stream");
+                updateRequest.Upload();
             }
             catch (Exception ex)
             {
@@ -66,12 +77,18 @@ namespace FirebaseBackupWindowsForm.Services
             }
         }
 
-        static void CreateFile(DriveService service, File fileToCreate)
+        static void CreateFile(DriveService service, string fileToCreatePath)
         {
+            byte[] newFileContent = System.IO.File.ReadAllBytes(fileToCreatePath);
+
+            File fileMetadata = new() { Name = Path.GetFileName(fileToCreatePath), Parents = new List<string>() };
+            MemoryStream stream = new MemoryStream(newFileContent);
             try
             {
-                service.Files.Create(fileToCreate).Execute();
-            } catch (Exception ex)
+                FilesResource.CreateMediaUpload createRequest = service.Files.Create(fileMetadata, stream, "application/octet-stream");
+                createRequest.Upload();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error creating file: {ex.Message}");
             }

@@ -40,10 +40,13 @@ namespace Firebase.Services
                 File.WriteAllText(savePath, json1);
 
                 await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId+".json"), savePath);
+                MessageBox.Show("Backup succefully ended");
 
             }
+            
             // Display the serialized JSON
             return json;
+            
         }
     }
 
