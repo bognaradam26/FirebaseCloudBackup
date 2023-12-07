@@ -12,17 +12,20 @@ namespace Firebase.Services
         private static FirestoreService FirestoreService = new();
         private static GoogleDriveService DriveService = new();
 
-        public async static Task<string> BackupData(Project project)
+        public async static void BackupData(Project project, ProgressBar progressBar)
         {
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", project.ServiceAccountFilePath);
             FirestoreDb db = FirestoreDb.Create(project.ProjectId);
 
             IAsyncEnumerable<CollectionReference> rootCollections = db.ListRootCollectionsAsync();
 
-            string json = "";
+            
+            int currentCount = 0;
+            float totalCount = 0;
 
             await foreach (CollectionReference collection in rootCollections)
             {
+                 // For the progress bar - minden gyűjteménnyel előrehalad
                 FirestoreCollection root = new()
                 {
                     Id = collection.Id,
@@ -41,11 +44,22 @@ namespace Firebase.Services
 
                 await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId + ".json"), savePath);
                 File.Delete(savePath);
-            }
-            MessageBox.Show("Backup succefully ended");
-            // Display the serialized JSON
-            return json;
 
+                currentCount++;
+                totalCount = currentCount + (1 / currentCount);// Az aktuális szám növelése minden befejezett gyűjteménnyel
+
+                // A ProgressBar frissítése
+                int progressPercentage = (int)((float)currentCount / totalCount * 100);
+                progressBar.Invoke((MethodInvoker)delegate
+                {
+                    progressBar.Value = progressPercentage;
+                });
+            }
+            // Display the serialized JSON
+            progressBar.Invoke((MethodInvoker)delegate
+            {
+                progressBar.Value = 100;
+            });
         }
     }
 

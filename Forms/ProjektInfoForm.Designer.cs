@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             richTextBox1 = new RichTextBox();
-            richTextBox2 = new RichTextBox();
             button1 = new Button();
             button2 = new Button();
+            button3 = new Button();
+            progressBar1 = new ProgressBar();
             SuspendLayout();
             // 
             // richTextBox1
@@ -41,15 +42,6 @@
             richTextBox1.Size = new Size(253, 179);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
-            // 
-            // richTextBox2
-            // 
-            richTextBox2.Location = new Point(289, 12);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(434, 266);
-            richTextBox2.TabIndex = 1;
-            richTextBox2.Text = "";
-            richTextBox2.TextChanged += richTextBox2_TextChanged;
             // 
             // button1
             // 
@@ -63,7 +55,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(289, 284);
+            button2.Location = new Point(93, 197);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 3;
@@ -71,14 +63,32 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(174, 197);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 4;
+            button3.Text = "Restore";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(17, 226);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(151, 39);
+            progressBar1.TabIndex = 5;
+            // 
             // ProjektInfoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(446, 336);
+            Controls.Add(progressBar1);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(richTextBox2);
             Controls.Add(richTextBox1);
             Name = "ProjektInfoForm";
             Text = "Form1";
@@ -88,8 +98,9 @@
         #endregion
 
         private RichTextBox richTextBox1;
-        private RichTextBox richTextBox2;
         private Button button1;
         private Button button2;
+        private Button button3;
+        private ProgressBar progressBar1;
     }
 }

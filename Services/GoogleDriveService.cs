@@ -1,8 +1,6 @@
-﻿using Google.Api;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
-using Google.Cloud.Firestore;
 using Microsoft.IdentityModel.Tokens;
 using File = Google.Apis.Drive.v3.Data.File;
 
@@ -64,7 +62,7 @@ namespace FirebaseBackupWindowsForm.Services
             }
 
             Console.WriteLine("Folder not found.");
-            return null;
+            return "";
         }
 
         static void UpdateFile(DriveService service, string fileId, string updateFilePath)
@@ -99,26 +97,15 @@ namespace FirebaseBackupWindowsForm.Services
             }
         }
 
-        public static void GetAllFiles(string serviceAccountFilePath)
+        public static List<string> GetAllFiles(DriveService service, string serviceAccountFilePath)
         {
-            var credential = GoogleCredential.FromFile(serviceAccountFilePath)
-                .CreateScoped(DriveService.ScopeConstants.DriveFile);
-
-            var service = new DriveService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential
-            });
-
             var driveFiles = service.Files.List().Execute();
+            List<string> fileIds = new List<string>();
             foreach (var driveFile in driveFiles.Files)
             {
-                var request = service.Files.Get(driveFile.Id);
-                MemoryStream stream = new MemoryStream();
-                request.Download(stream);
-                string fullPath = Path.Combine(serviceAccountFilePath, driveFile.Name);
-                var fileStream = new FileStream(driveFile.Name, FileMode.Create, FileAccess.Write);
-                stream.WriteTo(fileStream);
+                fileIds.Add(driveFile.Id);
             }
+            return fileIds;
         }
 
     }

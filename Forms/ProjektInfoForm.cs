@@ -1,5 +1,6 @@
 ﻿using Firebase.Models;
 using Firebase.Services;
+using FirebaseBackupWindowsForm.Services;
 
 namespace FirebaseBackupWindowsForm.Forms
 {
@@ -26,14 +27,22 @@ namespace FirebaseBackupWindowsForm.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory()+"\\utalom-3b9c1.json");
-            string json = await BackupService.BackupData(backup);
-            richTextBox2.Text = json;
+            progressBar1.Maximum = 100; // Beállítjuk a ProgressBar maximális értékét
+            progressBar1.Value = 0;
+            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json");
+            await Task.Run(() => BackupService.BackupData(backup, progressBar1));
+
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json");
+            RestoreServices.RestoreData(backup);
         }
     }
 }
