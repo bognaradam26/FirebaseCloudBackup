@@ -39,14 +39,13 @@ namespace Firebase.Services
                 string savePath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, collection.Id + ".json");
                 File.WriteAllText(savePath, json1);
 
-                await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId+".json"), savePath);
-                MessageBox.Show("Backup succefully ended");
-
+                await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId + ".json"), savePath);
+                File.Delete(savePath);
             }
-            
+            MessageBox.Show("Backup succefully ended");
             // Display the serialized JSON
             return json;
-            
+
         }
     }
 

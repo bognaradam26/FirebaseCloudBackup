@@ -35,13 +35,18 @@ namespace FirebaseBackupWindowsForm.Services
 
                     }
                 }
-                if (!isExistId.IsNullOrEmpty()) {
-                    UpdateFile(service,isExistId,filePath);
-                } else {
+                if (!isExistId.IsNullOrEmpty())
+                {
+                    UpdateFile(service, isExistId, filePath);
+                }
+                else
+                {
                     CreateFile(service, filePath);
                 }
 
-            } else {
+            }
+            else
+            {
                 CreateFile(service, filePath);
             }
         }
@@ -93,5 +98,28 @@ namespace FirebaseBackupWindowsForm.Services
                 MessageBox.Show($"Error creating file: {ex.Message}");
             }
         }
+
+        public static void GetAllFiles(string serviceAccountFilePath)
+        {
+            var credential = GoogleCredential.FromFile(serviceAccountFilePath)
+                .CreateScoped(DriveService.ScopeConstants.DriveFile);
+
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential
+            });
+
+            var driveFiles = service.Files.List().Execute();
+            foreach (var driveFile in driveFiles.Files)
+            {
+                var request = service.Files.Get(driveFile.Id);
+                MemoryStream stream = new MemoryStream();
+                request.Download(stream);
+                string fullPath = Path.Combine(serviceAccountFilePath, driveFile.Name);
+                var fileStream = new FileStream(driveFile.Name, FileMode.Create, FileAccess.Write);
+                stream.WriteTo(fileStream);
+            }
+        }
+
     }
 }
