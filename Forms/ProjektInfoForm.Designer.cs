@@ -75,9 +75,9 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(17, 226);
+            progressBar1.Location = new Point(267, 12);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(151, 39);
+            progressBar1.Size = new Size(167, 27);
             progressBar1.TabIndex = 5;
             // 
             // ProjektInfoForm
