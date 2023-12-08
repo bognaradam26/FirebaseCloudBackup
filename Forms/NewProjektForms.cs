@@ -44,7 +44,9 @@ namespace FirebaseBackupWindowsForm.Forms
             if (projektName != null && projektServiceFile != null)
             {
                 Console.WriteLine("Asddd: " + projektName.ToString() + "\n" + projektServiceFile.ToString());
-                Project projectToSave = new Project(projektName.ToString(), projektServiceFile.ToString());
+                Project projectToSave = new Project("","");
+                projectToSave.ProjectId = projektName.ToString();
+                projectToSave.ServiceAccountFilePath = projektServiceFile.ToString();
                 projectService.AddProject(projectToSave);
                 Close();
             } else

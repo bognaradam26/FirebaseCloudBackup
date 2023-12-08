@@ -8,12 +8,13 @@ namespace Firebase.DataAccess
         private string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles");
         public void AddProject(Project project)
         {
+            directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles");
             string json = JsonConvert.SerializeObject(project, Formatting.Indented); 
 
             directoryPath = Path.Combine(directoryPath, project.ProjectId);
             Directory.CreateDirectory(directoryPath);
 
-            directoryPath = Path.Combine(directoryPath, project.ProjectId + ".json");
+            directoryPath = Path.Combine(directoryPath, project.ProjectId + "Config.json");
             File.WriteAllText(directoryPath, json);
         }
 
@@ -25,7 +26,7 @@ namespace Firebase.DataAccess
 
         internal Project findById(string projectId)
         {
-            string filePath = Path.Combine(directoryPath, projectId, projectId + ".json");
+            string filePath = Path.Combine(directoryPath, projectId, projectId + "Config.json");
             Console.WriteLine(directoryPath);
             if (File.Exists(filePath))
             {
@@ -56,7 +57,7 @@ namespace Firebase.DataAccess
             foreach (string folder in folders)
             {
                 string folderName = Path.GetFileName(folder);
-                string json = File.ReadAllText(Path.Combine(folder, folderName + ".json"));
+                string json = File.ReadAllText(Path.Combine(folder, folderName + "Config.json"));
 
                 Project? project = JsonConvert.DeserializeObject<Project>(json);
                 if (project != null)

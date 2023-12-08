@@ -17,6 +17,7 @@ namespace FirebaseBackupWindowsForm
 
         public void GetAllProjects()
         {
+            listView1.Items.Clear();
             foreach (var project in projectService.GetAllProjects())
             {
                 ListViewItem item = new ListViewItem(project.ProjectId);
@@ -41,7 +42,7 @@ namespace FirebaseBackupWindowsForm
         private void NewProjectButton_Click(object sender, EventArgs e)
         {
             newProjektForm.ShowDialog();
-            this.GetAllProjects();
+            GetAllProjects();
             
         }
 
