@@ -8,20 +8,19 @@ namespace Firebase.DataAccess
         private string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles");
         public void AddProject(Project project)
         {
-            directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles");
             string json = JsonConvert.SerializeObject(project, Formatting.Indented); 
 
-            directoryPath = Path.Combine(directoryPath, project.ProjectId);
-            Directory.CreateDirectory(directoryPath);
+            string saveDirectoryPath = Path.Combine(directoryPath, project.ProjectId);
+            Directory.CreateDirectory(saveDirectoryPath);
 
-            directoryPath = Path.Combine(directoryPath, project.ProjectId + "Config.json");
-            File.WriteAllText(directoryPath, json);
+            saveDirectoryPath = Path.Combine(saveDirectoryPath, project.ProjectId + "Config.json");
+            File.WriteAllText(saveDirectoryPath, json);
         }
 
-        public void DeleteProject(string projectId)
+        public void DeleteProject(Project project)
         {
-            directoryPath = Path.Combine(directoryPath, projectId);
-            Directory.Delete(directoryPath, true);
+            string deleteDirectoryPath = Path.Combine(directoryPath, project.ProjectId);
+            Directory.Delete(deleteDirectoryPath, true);
         }
 
         internal Project findById(string projectId)

@@ -31,9 +31,14 @@ namespace Firebase.Services
             dataRepository.AddProject(project);
         }
 
-        internal Project findById(string? projectId)
+        public Project findById(string? projectId)
         {
             return dataRepository.findById(projectId);
+        }
+
+        public void DeleteProject(Project project)
+        {
+            dataRepository.DeleteProject(project);
         }
 
         // Implement UpdateProject and DeleteProject methods similarly

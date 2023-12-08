@@ -12,6 +12,6 @@ namespace Firebase.DataAccess
         List<Project> GetProjects();
         void AddProject(Project project);
         void UpdateProject(Project project);
-        void DeleteProject(string projectId);
+        void DeleteProject(Project project);
     }
 }
