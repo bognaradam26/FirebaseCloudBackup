@@ -23,11 +23,15 @@ namespace FirebaseBackupWindowsForm.Services
             foreach (string fileId in fileIds)
             {
                 var request = service.Files.Get(fileId);
-                MemoryStream stream = new MemoryStream();
                 Google.Apis.Drive.v3.Data.File fileInfo = request.Execute();
-                request.Download(stream);
-                var fileStream = new FileStream(Path.Combine("D:\\projects\\FirebaseBackupWindowsForm\\ConfigFiles\\utalom-3b9c1",fileInfo.Name), FileMode.Create, FileAccess.Write);
-                stream.WriteTo(fileStream);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    request.Download(stream);
+                    using (var fileStream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, fileInfo.Name), FileMode.Create, FileAccess.Write))
+                    {
+                        stream.WriteTo(fileStream);
+                    }
+                }
 
             }
         }
