@@ -7,8 +7,6 @@ namespace FirebaseBackupWindowsForm.Services
 {
     public class RestoreServices
     {
-        private static FirestoreService FirestoreService = new();
-
         public static void RestoreData(Project project)
         {
             var credential = GoogleCredential.FromFile(project.ServiceAccountFilePath).CreateScoped(DriveService.ScopeConstants.DriveFile);
@@ -27,9 +25,13 @@ namespace FirebaseBackupWindowsForm.Services
                 using (MemoryStream stream = new MemoryStream())
                 {
                     request.Download(stream);
-                    using (var fileStream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, fileInfo.Name), FileMode.Create, FileAccess.Write))
+                    string filePath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, fileInfo.Name);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                     {
                         stream.WriteTo(fileStream);
+                        string json = File.ReadAllText(filePath);
+                        FirestoreService.RestoreCollection(json,fileInfo.Name);
+                        
                     }
                 }
 

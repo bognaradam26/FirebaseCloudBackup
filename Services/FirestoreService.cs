@@ -1,24 +1,9 @@
-﻿using Google.Cloud.Firestore;
-using System.Text.Json.Serialization;
+﻿using FirebaseBackupWindowsForm.Models;
+using Google.Cloud.Firestore;
+using System.Text.Json;
 
 namespace FirebaseBackupWindowsForm.Services
 {
-    public class FirestoreDocument
-    {
-        [JsonPropertyName("Data")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, object>? Data { get; set; }
-
-        [JsonPropertyName("Subcollections")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public List<FirestoreCollection>? Subcollections { get; set; }
-    }
-
-    public class FirestoreCollection
-    {
-        public string? Id { get; set; }
-        public List<FirestoreDocument>? Documents { get; set; }
-    }
     internal class FirestoreService
     {
         public static async Task searchCollection(CollectionReference collection, FirestoreCollection collectionNode)
@@ -70,6 +55,18 @@ namespace FirebaseBackupWindowsForm.Services
                     documentNode.Subcollections.Add(subCollectionNode);
                 }
             }
+        }
+
+        public static void RestoreCollection(string json, string collectionName)
+        {
+            FirestoreDocument deserializedFirestoreDocument = JsonSerializer.Deserialize<FirestoreDocument>(json);
+
+            if (deserializedFirestoreDocument != null)
+            {
+                MessageBox.Show($"Data Key1: {deserializedFirestoreDocument.Data?["Key1"]}");
+                MessageBox.Show($"Subcollections Id: {deserializedFirestoreDocument.Subcollections?[0]?.Id}");
+            }
+
         }
     }
 }
