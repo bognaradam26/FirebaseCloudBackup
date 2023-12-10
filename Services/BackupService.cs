@@ -1,4 +1,5 @@
 ﻿using Firebase.Models;
+using FirebaseBackupWindowsForm.Models;
 using FirebaseBackupWindowsForm.Services;
 using Google.Cloud.Firestore;
 using System.Text.Json;
@@ -9,7 +10,6 @@ namespace Firebase.Services
 
     public class BackupService
     {
-        private static FirestoreService FirestoreService = new();
         private static GoogleDriveService DriveService = new();
 
         public async static void BackupData(Project project, ProgressBar progressBar)

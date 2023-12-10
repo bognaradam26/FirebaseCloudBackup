@@ -9,6 +9,10 @@ namespace FirebaseBackupWindowsForm.Models
 {
     internal class FirestoreDocument
     {
+        [JsonPropertyName("Id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string Id { get; set; }
+
         [JsonPropertyName("Data")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, object>? Data { get; set; }

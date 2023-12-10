@@ -1,4 +1,5 @@
-﻿using FirebaseBackupWindowsForm.Models;
+﻿using Firebase.Models;
+using FirebaseBackupWindowsForm.Models;
 using Google.Cloud.Firestore;
 using System.Text.Json;
 
@@ -22,7 +23,7 @@ namespace FirebaseBackupWindowsForm.Services
                 DocumentReference docref = document.Reference;
                 Dictionary<string, object> data = document.ToDictionary();
 
-                documentNode.Data.Add("ItemId", document.Id);
+                documentNode.Id = document.Id;
 
                 foreach (KeyValuePair<string, object> field in data)
                 {
@@ -57,16 +58,45 @@ namespace FirebaseBackupWindowsForm.Services
             }
         }
 
-        public static void RestoreCollection(string json, string collectionName)
+        public static async Task RestoreCollection(string json, string collectionName, Project project)
         {
-            FirestoreDocument deserializedFirestoreDocument = JsonSerializer.Deserialize<FirestoreDocument>(json);
+            FirestoreCollection? deserializedFirestoreCollection = JsonSerializer.Deserialize<FirestoreCollection>(json);
 
-            if (deserializedFirestoreDocument != null)
+            if (deserializedFirestoreCollection != null)
             {
-                MessageBox.Show($"Data Key1: {deserializedFirestoreDocument.Data?["Key1"]}");
-                MessageBox.Show($"Subcollections Id: {deserializedFirestoreDocument.Subcollections?[0]?.Id}");
+                Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", project.ServiceAccountFilePath);
+                FirestoreDb db = FirestoreDb.Create(project.ProjectId);
+                CollectionReference rootCollectionRef = db.Collection(deserializedFirestoreCollection.Id);
+                await CreateFirestoreCollection(rootCollectionRef, deserializedFirestoreCollection);
             }
 
+        }
+
+        static async Task CreateFirestoreCollection(CollectionReference parentCollection, FirestoreCollection firestoreCollection)
+        {
+            CollectionReference collectionRef = parentCollection.Document(firestoreCollection.Id).Collection(firestoreCollection.Id);
+            foreach (var firestoreDocument in firestoreCollection.Documents)
+            {
+                DocumentReference documentRef = collectionRef.Document(firestoreDocument.Id);
+
+                Dictionary<string, object> data = firestoreDocument.Data ?? new Dictionary<string, object>();
+                await documentRef.SetAsync(data);
+
+                // Rekurzív hívás az alkollekciók esetén
+                if (firestoreDocument.Subcollections != null)
+                {
+                    await CreateFirestoreCollection(collectionRef, firestoreDocument.Subcollections); 
+                }
+            }
+        }
+
+        static async Task CreateFirestoreCollection(CollectionReference parentCollection, List<FirestoreCollection> firestoreCollections)
+        {
+            // Bejárás és Firestore kollekciók létrehozása
+            foreach (var collection in firestoreCollections)
+            {
+                await CreateFirestoreCollection(parentCollection, collection);
+            }
         }
     }
 }

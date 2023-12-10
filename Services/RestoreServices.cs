@@ -7,7 +7,7 @@ namespace FirebaseBackupWindowsForm.Services
 {
     public class RestoreServices
     {
-        public static void RestoreData(Project project)
+        public static async Task RestoreData(Project project)
         {
             var credential = GoogleCredential.FromFile(project.ServiceAccountFilePath).CreateScoped(DriveService.ScopeConstants.DriveFile);
 
@@ -29,9 +29,26 @@ namespace FirebaseBackupWindowsForm.Services
                     using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                     {
                         stream.WriteTo(fileStream);
-                        string json = File.ReadAllText(filePath);
-                        FirestoreService.RestoreCollection(json,fileInfo.Name);
                         
+                    }
+                    if (File.Exists(filePath))
+                    {
+                        string json = File.ReadAllText(filePath);
+
+                        // Kezeljük a FirestoreService.RestoreCollection függvényt.
+                        try
+                        {
+                            FirestoreService.RestoreCollection(json, fileInfo.Name, project);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Kivételkezelés: kezeld a FirestoreService.RestoreCollection hívás közbeni hibákat.
+                            MessageBox.Show($"Hiba a FirestoreService.RestoreCollection függvény hívása közben: {ex.Message}");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"A fájl nem található: {filePath}");
                     }
                 }
 
