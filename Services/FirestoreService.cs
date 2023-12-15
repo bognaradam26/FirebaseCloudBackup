@@ -102,9 +102,11 @@ namespace FirebaseBackupWindowsForm.Services
                         case JsonValueKind.True:
                             data.Add(asd.Key, jsonElement.GetBoolean());
                             break;
+
                         case JsonValueKind.False:
                             data.Add(asd.Key, jsonElement.GetBoolean());
                             break;
+
                         case JsonValueKind.Array:
                             foreach (JsonElement arrayElement in jsonElement.EnumerateArray())
                             {
