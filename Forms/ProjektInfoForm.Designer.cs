@@ -33,6 +33,7 @@
             button2 = new Button();
             button3 = new Button();
             progressBar1 = new ProgressBar();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             SuspendLayout();
             // 
             // richTextBox1
@@ -49,7 +50,7 @@
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
-            button1.Text = "Back";
+            button1.Text = "Vissza";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -57,9 +58,9 @@
             // 
             button2.Location = new Point(93, 197);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(75, 42);
             button2.TabIndex = 3;
-            button2.Text = "Backup";
+            button2.Text = "Biztonsági mentés";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -67,9 +68,9 @@
             // 
             button3.Location = new Point(174, 197);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(91, 23);
             button3.TabIndex = 4;
-            button3.Text = "Restore";
+            button3.Text = "Visszaállítás";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -102,5 +103,6 @@
         private Button button2;
         private Button button3;
         private ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

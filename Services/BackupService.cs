@@ -37,7 +37,7 @@ namespace Firebase.Services
                 string json1 = JsonSerializer.Serialize(root, new JsonSerializerOptions
                 {
                     WriteIndented = true, // Optional: format the JSON for readability
-                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 });
                 string savePath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, collection.Id + ".json");
                 File.WriteAllText(savePath, json1);

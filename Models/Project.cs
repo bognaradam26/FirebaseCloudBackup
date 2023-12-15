@@ -12,7 +12,6 @@
             ProjectId = projectId;
             ServiceAccountFilePath = serviceAccountFilePath;
             LastBackupDate = null;
-            List<String> rootCollections = new List<String>();
         }
     }
 }

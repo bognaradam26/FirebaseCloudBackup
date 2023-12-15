@@ -35,6 +35,11 @@
             ProjectId = new ColumnHeader();
             SuspendLayout();
             // 
+            // ProjectId
+            // 
+            ProjectId.Text = "ProjectId";
+            ProjectId.Width = 120;
+            // 
             // listView1
             // 
             listView1.CausesValidation = false;
@@ -46,23 +51,18 @@
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
             // 
-            // ProjectId
-            // 
-            ProjectId.Text = "ProjectId";
-            ProjectId.Width = 120;
-            // 
             // button1
             // 
             button1.Location = new Point(12, 306);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 1;
-            button1.Text = "Details";
+            button1.Text = "Részletek";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            //
-            // button2
-            //
+            // 
+            // newProjectButton
+            // 
             newProjectButton.Location = new Point(112, 306);
             newProjectButton.Name = "newProjectButton";
             newProjectButton.Size = new Size(75, 23);
@@ -70,7 +70,7 @@
             newProjectButton.Text = "Új projekt megadása";
             newProjectButton.UseVisualStyleBackColor = true;
             newProjectButton.Click += NewProjectButton_Click;
-            //
+            // 
             // main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);

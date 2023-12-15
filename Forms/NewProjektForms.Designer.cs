@@ -43,9 +43,9 @@
             // 
             button1.Location = new Point(195, 152);
             button1.Name = "button1";
-            button1.Size = new Size(25, 23);
+            button1.Size = new Size(57, 23);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Keresés";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -81,7 +81,7 @@
             projektServiceFileLabel.Name = "projektServiceFileLabel";
             projektServiceFileLabel.Size = new Size(105, 15);
             projektServiceFileLabel.TabIndex = 4;
-            projektServiceFileLabel.Text = "Projekt service fajl:";
+            projektServiceFileLabel.Text = "Projekt service fájl:";
             // 
             // openFileDialog1
             // 
@@ -93,7 +93,7 @@
             backButton.Name = "backButton";
             backButton.Size = new Size(75, 23);
             backButton.TabIndex = 5;
-            backButton.Text = "Back";
+            backButton.Text = "Vissza";
             backButton.UseVisualStyleBackColor = true;
             backButton.Click += backButton_Click;
             // 
@@ -103,7 +103,7 @@
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(75, 23);
             saveButton.TabIndex = 6;
-            saveButton.Text = "Save";
+            saveButton.Text = "Mentés";
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += saveButton_Click;
             // 
