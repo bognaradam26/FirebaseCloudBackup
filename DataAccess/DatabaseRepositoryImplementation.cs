@@ -67,10 +67,26 @@ namespace Firebase.DataAccess
 
             return projects;
         }
-
+        
         public void UpdateProject(Project project)
         {
-            throw new NotImplementedException();
+            // Ellenőrizzük, hogy a projekt már létezik-e
+            string projectDirectoryPath = Path.Combine(directoryPath, project.ProjectId);
+            string projectConfigPath = Path.Combine(projectDirectoryPath, project.ProjectId + "Config.json");
+
+            if (Directory.Exists(projectDirectoryPath) && File.Exists(projectConfigPath))
+            {
+                // Módosítsuk a projekt adatait
+                string json = JsonConvert.SerializeObject(project, Formatting.Indented);
+
+                // Frissítsük a fájlt az új adatokkal
+                File.WriteAllText(projectConfigPath, json);
+            }
+            else
+            {
+                // Ha a projekt nem létezik, akkor hozzáadhatunk egy hibakezelést vagy kivételt dobhatunk
+                MessageBox.Show("A config fájl nem létezik.");
+            }
         }
     }
 }

@@ -38,7 +38,8 @@ namespace FirebaseBackupWindowsForm.Services
                         // Kezeljük a FirestoreService.RestoreCollection függvényt.
                         try
                         {
-                            FirestoreService.RestoreCollection(json, fileInfo.Name, project);
+                            await FirestoreService.RestoreCollection(json, fileInfo.Name, project);
+                            File.Delete(filePath);
                         }
                         catch (Exception ex)
                         {

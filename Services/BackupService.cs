@@ -11,6 +11,7 @@ namespace Firebase.Services
     public class BackupService
     {
         private static GoogleDriveService DriveService = new();
+        public static ProjectService projectService = new();
 
         public async static void BackupData(Project project, ProgressBar progressBar)
         {
@@ -37,13 +38,12 @@ namespace Firebase.Services
                 string json1 = JsonSerializer.Serialize(root, new JsonSerializerOptions
                 {
                     WriteIndented = true, // Optional: format the JSON for readability
-                    //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 });
                 string savePath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, collection.Id + ".json");
                 File.WriteAllText(savePath, json1);
 
                 await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId + ".json"), savePath);
-                //File.Delete(savePath);
+                File.Delete(savePath);
 
                 currentCount++;
                 totalCount = currentCount + (1 / currentCount);// Az aktuális szám növelése minden befejezett gyűjteménnyel
@@ -55,11 +55,13 @@ namespace Firebase.Services
                     progressBar.Value = progressPercentage;
                 });
             }
-            // Display the serialized JSON
             progressBar.Invoke((MethodInvoker)delegate
             {
                 progressBar.Value = 100;
             });
+
+            project.LastBackupDate = DateTime.Now;
+            projectService.UpdateProject(project);
         }
     }
 
