@@ -27,7 +27,16 @@ namespace FirebaseBackupWindowsForm
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                projectService.DeleteProject(projectService.findById(listView1.SelectedItems[0].Text));
+            }
+            GetAllProjects();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
             {
@@ -39,19 +48,9 @@ namespace FirebaseBackupWindowsForm
             }
         }
 
-        private void NewProjectButton_Click(object sender, EventArgs e)
+        private void newProjectButton_Click_1(object sender, EventArgs e)
         {
             newProjektForm.ShowDialog();
-            GetAllProjects();
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                projectService.DeleteProject(projectService.findById(listView1.SelectedItems[0].Text));
-            }
             GetAllProjects();
         }
     }

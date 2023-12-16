@@ -61,6 +61,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Részletek";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // newProjectButton
             // 
@@ -70,6 +71,7 @@
             this.newProjectButton.TabIndex = 1;
             this.newProjectButton.Text = "Új projekt megadása";
             this.newProjectButton.UseVisualStyleBackColor = true;
+            this.newProjectButton.Click += new System.EventHandler(this.newProjectButton_Click_1);
             // 
             // button2
             // 
