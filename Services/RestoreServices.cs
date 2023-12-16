@@ -7,8 +7,10 @@ namespace FirebaseBackupWindowsForm.Services
 {
     public class RestoreServices
     {
-        public static async Task RestoreData(Project project)
+        public static async Task RestoreData(Project project, ProgressBar progressBar)
         {
+            int currentCount = 0;
+            float totalCount;
             var credential = GoogleCredential.FromFile(project.ServiceAccountFilePath).CreateScoped(DriveService.ScopeConstants.DriveFile);
 
             var service = new DriveService(new BaseClientService.Initializer()
@@ -17,9 +19,10 @@ namespace FirebaseBackupWindowsForm.Services
             });
             //meglévő fájlok megkeresése
             List<string> fileIds = GoogleDriveService.GetAllFiles(service, project.ServiceAccountFilePath);
-
+            totalCount = fileIds.Count;
             foreach (string fileId in fileIds)
             {
+                currentCount++;
                 var request = service.Files.Get(fileId);
                 Google.Apis.Drive.v3.Data.File fileInfo = request.Execute();
                 using (MemoryStream stream = new MemoryStream())
@@ -52,6 +55,11 @@ namespace FirebaseBackupWindowsForm.Services
                         MessageBox.Show($"A fájl nem található: {filePath}");
                     }
                 }
+                int progressPercentage = (int)((float)currentCount / totalCount * 100);
+                progressBar.Invoke((MethodInvoker)delegate
+                {
+                    progressBar.Value = progressPercentage;
+                });
 
             }
         }
