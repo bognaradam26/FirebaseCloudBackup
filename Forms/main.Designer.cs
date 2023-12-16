@@ -39,25 +39,27 @@
             // ProjectId
             // 
             ProjectId.Text = "ProjectId";
-            ProjectId.Width = 120;
+            ProjectId.Width = 286;
             // 
             // listView1
             // 
             this.listView1.CausesValidation = false;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             ProjectId});
-            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Location = new System.Drawing.Point(14, 16);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(251, 288);
+            this.listView1.Size = new System.Drawing.Size(286, 383);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(304, 12);
+            this.button1.Location = new System.Drawing.Point(347, 16);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 45);
+            this.button1.Size = new System.Drawing.Size(96, 60);
             this.button1.TabIndex = 1;
             this.button1.Text = "Részletek";
             this.button1.UseVisualStyleBackColor = true;
@@ -65,9 +67,10 @@
             // 
             // newProjectButton
             // 
-            this.newProjectButton.Location = new System.Drawing.Point(304, 102);
+            this.newProjectButton.Location = new System.Drawing.Point(347, 136);
+            this.newProjectButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.newProjectButton.Name = "newProjectButton";
-            this.newProjectButton.Size = new System.Drawing.Size(84, 45);
+            this.newProjectButton.Size = new System.Drawing.Size(96, 60);
             this.newProjectButton.TabIndex = 1;
             this.newProjectButton.Text = "Új projekt megadása";
             this.newProjectButton.UseVisualStyleBackColor = true;
@@ -75,9 +78,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(179, 318);
+            this.button2.Location = new System.Drawing.Point(205, 424);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 45);
+            this.button2.Size = new System.Drawing.Size(96, 60);
             this.button2.TabIndex = 2;
             this.button2.Text = "Törlés";
             this.button2.UseVisualStyleBackColor = true;
@@ -85,13 +89,14 @@
             // 
             // main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 400);
+            this.ClientSize = new System.Drawing.Size(686, 533);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.newProjectButton);
             this.Controls.Add(this.listView1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Kezdőlap";
