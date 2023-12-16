@@ -31,13 +31,26 @@ namespace FirebaseBackupWindowsForm.Services
         {
             DocumentReference documentReference = document.Reference;
             IAsyncEnumerable<CollectionReference> subcollections = documentReference.ListCollectionsAsync();
-            
+
             documentNode.Id = documentReference.Id;
             Dictionary<string, object> data = document.ToDictionary();
             foreach (KeyValuePair<string, object> field in data)
             {
                 string key = field.Key;
                 object value = field.Value;
+                // implementáció kezdete a dátumkezelésre
+                /*if (field.Value is Google.Cloud.Firestore.Timestamp timestamp)
+                {
+                    // Az időpont kinyerése
+                    DateTime dateTime = timestamp.ToDateTime();
+
+                    // Most már a 'dateTime' változóban találod az időpontot
+                    value = dateTime.ToString();
+                } else
+                {
+                    value = field.Value;
+                }*/
+
                 documentNode.Data.Add(key, value);
             }
 
@@ -83,6 +96,20 @@ namespace FirebaseBackupWindowsForm.Services
                     JsonElement jsonElement = (JsonElement)asd.Value;
                     switch (jsonElement.ValueKind)
                     {
+                        // elkzdett implementáció a dátumkezelésre
+                        /*case JsonValueKind.String:
+                            if (DateTime.TryParse(jsonElement.GetString(), out DateTime dateTimeValue))
+                            {
+                                // Ellenőrizzük, hogy a string érték dátum- és időformátumban van-e
+                                // és ha igen, hozzáadjuk a DateTime értéket
+                                data.Add(asd.Key, dateTimeValue.ToShortDateString());
+                            }
+                            else
+                            {
+                                // Ha a string nem dátum- és időformátumban van, egyszerűen hozzáadjuk a string értéket
+                                data.Add(asd.Key, jsonElement.ToString());
+                            }
+                            break;*/
                         case JsonValueKind.String:
                             data.Add(asd.Key, jsonElement.ToString());
                             break;
@@ -108,19 +135,48 @@ namespace FirebaseBackupWindowsForm.Services
                             break;
 
                         case JsonValueKind.Array:
+                            List<object> arrayValues = new List<object>();
                             foreach (JsonElement arrayElement in jsonElement.EnumerateArray())
                             {
-                                // Kezelje az egyes tömb elemeket itt
+                                switch (arrayElement.ValueKind)
+                                {
+                                    case JsonValueKind.Number:
+                                        if (arrayElement.TryGetInt32(out int arrayIntValue))
+                                        {
+                                            arrayValues.Add(arrayIntValue);
+                                        }
+                                        else if (arrayElement.TryGetDouble(out double arrayDoubleValue))
+                                        {
+                                            arrayValues.Add(arrayDoubleValue);
+                                        }
+                                        break;
+
+                                    case JsonValueKind.String:
+                                        arrayValues.Add(arrayElement.GetString());
+                                        break;
+
+                                    case JsonValueKind.True:
+                                        arrayValues.Add(arrayElement.GetBoolean());
+                                        break;
+
+                                    case JsonValueKind.False:
+                                        arrayValues.Add(arrayElement.GetBoolean());
+                                        break;
+
+                                    default:
+                                        MessageBox.Show("Ismeretlen vagy nem támogatott értéktípus a tömbben.");
+                                        break;
+                                }
                             }
+                            data.Add(asd.Key, arrayValues);
                             break;
 
-                        // További esetek hozzáadása szükség esetén
 
                         default:
-                            Console.WriteLine("Ismeretlen vagy nem támogatott értéktípus.");
+                            MessageBox.Show("Ismeretlen vagy nem támogatott értéktípus.");
                             break;
                     }
-                    
+
                 }
                 await documentRef.SetAsync(data);
 
@@ -141,5 +197,6 @@ namespace FirebaseBackupWindowsForm.Services
                 await CreateFirestoreCollection(collRef, collection);
             }
         }
+
     }
 }

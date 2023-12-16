@@ -42,8 +42,8 @@ namespace Firebase.Services
                 string savePath = Path.Combine(Directory.GetCurrentDirectory(), "ConfigFiles", project.ProjectId, collection.Id + ".json");
                 File.WriteAllText(savePath, json1);
 
-                await DriveService.UploadFile(Path.Combine(Directory.GetCurrentDirectory(), project.ProjectId + ".json"), savePath);
-                File.Delete(savePath);
+                await DriveService.UploadFile(project.ServiceAccountFilePath, savePath);
+                //File.Delete(savePath);
 
                 currentCount++;
                 totalCount = currentCount + (1 / currentCount);// Az aktuális szám növelése minden befejezett gyűjteménnyel
