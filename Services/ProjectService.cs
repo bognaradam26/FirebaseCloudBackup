@@ -41,6 +41,6 @@ namespace Firebase.Services
             dataRepository.DeleteProject(project);
         }
 
-        // Implement UpdateProject and DeleteProject methods similarly
+        // Implement UpdateProject method similarly
     }
 }

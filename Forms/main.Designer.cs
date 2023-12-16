@@ -79,8 +79,9 @@
             Controls.Add(button1);
             Controls.Add(newProjectButton);
             Controls.Add(listView1);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Name = "main";
-            Text = "Form1";
+            Text = "Kezdőlap";
             ResumeLayout(false);
         }
 

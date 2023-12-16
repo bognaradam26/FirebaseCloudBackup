@@ -34,5 +34,10 @@ namespace FirebaseBackupWindowsForm.Forms
             Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json");
             RestoreServices.RestoreData(backup);
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

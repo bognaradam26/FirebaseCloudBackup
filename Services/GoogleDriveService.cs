@@ -49,22 +49,6 @@ namespace FirebaseBackupWindowsForm.Services
             }
         }
 
-        private static string GetFolderId(DriveService service, string folderName)
-        {
-
-            var listRequest = service.Files.List();
-            listRequest.Q = $"name='{folderName}' and mimeType='application/vnd.google-apps.folder'";
-
-            var files = listRequest.Execute().Files;
-            if (files != null && files.Count > 0)
-            {
-                return files[0].Id;
-            }
-
-            Console.WriteLine("Folder not found.");
-            return "";
-        }
-
         static void UpdateFile(DriveService service, string fileId, string updateFilePath)
         {
             try

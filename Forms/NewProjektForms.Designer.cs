@@ -120,7 +120,8 @@
             Controls.Add(projektNameTextBox);
             Controls.Add(button1);
             Name = "NewProjektForms";
-            Text = "Form1";
+            Text = "Új projekt hozzáadása";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ResumeLayout(false);
             PerformLayout();
         }

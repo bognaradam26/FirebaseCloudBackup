@@ -28,72 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            richTextBox1 = new RichTextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            progressBar1 = new ProgressBar();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            SuspendLayout();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.SuspendLayout();
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(12, 12);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(253, 179);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
+            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(253, 179);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // button1
             // 
-            button1.Location = new Point(12, 197);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Vissza";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Location = new System.Drawing.Point(320, 118);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 42);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Vissza";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
-            button2.Location = new Point(93, 197);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 42);
-            button2.TabIndex = 3;
-            button2.Text = "Biztonsági mentés";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            this.button2.Location = new System.Drawing.Point(320, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 42);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Biztonsági mentés";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(174, 197);
-            button3.Name = "button3";
-            button3.Size = new Size(91, 23);
-            button3.TabIndex = 4;
-            button3.Text = "Visszaállítás";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            this.button3.Location = new System.Drawing.Point(320, 70);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 42);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Visszaállítás";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(267, 12);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(167, 27);
-            progressBar1.TabIndex = 5;
+            this.progressBar1.Location = new System.Drawing.Point(12, 332);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(507, 27);
+            this.progressBar1.TabIndex = 5;
             // 
             // ProjektInfoForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(446, 336);
-            Controls.Add(progressBar1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(richTextBox1);
-            Name = "ProjektInfoForm";
-            Text = "Form1";
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(547, 392);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.richTextBox1);
+            this.Name = "ProjektInfoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Projekt részletei";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
