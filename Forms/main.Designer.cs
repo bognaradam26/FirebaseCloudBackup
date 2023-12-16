@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ColumnHeader ProjectId;
-            listView1 = new ListView();
-            button1 = new Button();
-            newProjectButton = new Button();
-            ProjectId = new ColumnHeader();
-            SuspendLayout();
+            System.Windows.Forms.ColumnHeader ProjectId;
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.newProjectButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            ProjectId = new System.Windows.Forms.ColumnHeader();
+            this.SuspendLayout();
             // 
             // ProjectId
             // 
@@ -42,47 +43,58 @@
             // 
             // listView1
             // 
-            listView1.CausesValidation = false;
-            listView1.Columns.AddRange(new ColumnHeader[] { ProjectId });
-            listView1.Location = new Point(12, 12);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(251, 288);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            this.listView1.CausesValidation = false;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            ProjectId});
+            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(251, 288);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // button1
             // 
-            button1.Location = new Point(12, 306);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "Részletek";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Location = new System.Drawing.Point(304, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 45);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Részletek";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // newProjectButton
             // 
-            newProjectButton.Location = new Point(112, 306);
-            newProjectButton.Name = "newProjectButton";
-            newProjectButton.Size = new Size(75, 23);
-            newProjectButton.TabIndex = 1;
-            newProjectButton.Text = "Új projekt megadása";
-            newProjectButton.UseVisualStyleBackColor = true;
-            newProjectButton.Click += NewProjectButton_Click;
+            this.newProjectButton.Location = new System.Drawing.Point(304, 102);
+            this.newProjectButton.Name = "newProjectButton";
+            this.newProjectButton.Size = new System.Drawing.Size(84, 45);
+            this.newProjectButton.TabIndex = 1;
+            this.newProjectButton.Text = "Új projekt megadása";
+            this.newProjectButton.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(179, 318);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 45);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Törlés";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // main
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(600,400);
-            Controls.Add(button1);
-            Controls.Add(newProjectButton);
-            Controls.Add(listView1);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(600, 400);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.newProjectButton);
+            this.Controls.Add(this.listView1);
+            this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            Name = "main";
-            Text = "Kezdőlap";
-            ResumeLayout(false);
+            this.Text = "Kezdőlap";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -91,5 +103,6 @@
         private ColumnHeader ProjectId;
         private Button button1;
         private Button newProjectButton;
+        private Button button2;
     }
 }

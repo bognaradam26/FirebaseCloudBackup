@@ -46,5 +46,13 @@ namespace FirebaseBackupWindowsForm
             
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                projectService.DeleteProject(projectService.findById(listView1.SelectedItems[0].Text));
+            }
+            GetAllProjects();
+        }
     }
 }
