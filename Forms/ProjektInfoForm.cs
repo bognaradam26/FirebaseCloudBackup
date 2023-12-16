@@ -10,7 +10,9 @@ namespace FirebaseBackupWindowsForm.Forms
         {
             InitializeComponent();
 
-            richTextBox1.Text += "Projekt id:" + "\n" + project.ProjectId.ToString() + "\n" + "Service account file path:" + "\n" + project.ServiceAccountFilePath;
+            richTextBox1.Text += project.ProjectId.ToString() ;
+            richTextBox2.Text += project.ServiceAccountFilePath.ToString();
+            richTextBox3.Text += project.LastBackupDate;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -22,13 +24,13 @@ namespace FirebaseBackupWindowsForm.Forms
         {
             progressBar1.Maximum = 100; // Beállítjuk a ProgressBar maximális értékét
             progressBar1.Value = 0;
-            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json");
+            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json",null);
             await Task.Run(() => BackupService.BackupData(backup, progressBar1));
         }
 
         private async void button3_Click_1(object sender, EventArgs e)
         {
-            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json");
+            Project backup = new("utalom-3b9c1", Directory.GetCurrentDirectory() + "\\utalom-3b9c1.json",null);
             await RestoreServices.RestoreData(backup);
         }
     }

@@ -4,14 +4,13 @@
     {
         public string ProjectId { get; set; }
         public string ServiceAccountFilePath { get; set; }
-        public DateTimeOffset? LastBackupDate { get; set; } = null;
-        public List<String>? rootCollections { get; set; } = null;
+        public DateTime? LastBackupDate { get; set; }
 
-        public Project(string projectId, string serviceAccountFilePath)
+        public Project(string projectId, string serviceAccountFilePath, DateTime? lastBackupDate)
         {
             ProjectId = projectId;
             ServiceAccountFilePath = serviceAccountFilePath;
-            LastBackupDate = null;
+            LastBackupDate = lastBackupDate;
         }
     }
 }

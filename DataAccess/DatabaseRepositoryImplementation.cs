@@ -34,7 +34,7 @@ namespace Firebase.DataAccess
                     string jsonContent = File.ReadAllText(filePath);
                     var projectData = JsonConvert.DeserializeObject<Project>(jsonContent);
 
-                    return new Project(projectData.ProjectId, projectData.ServiceAccountFilePath); 
+                    return new Project(projectData.ProjectId, projectData.ServiceAccountFilePath, projectData.LastBackupDate); 
                 }
                 catch (System.Text.Json.JsonException)
                 {
